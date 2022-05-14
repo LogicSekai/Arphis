@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_genre"
+        android:name="com.arphis.ui.genre.GenreFragment"
+        android:label="Genre"
+        tools:layout="@layout/fragment_genre" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.arphis.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"

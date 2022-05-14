@@ -1,6 +1,7 @@
 package com.arphis
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -8,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.arphis.databinding.ActivityNavigationBinding
+import com.arphis.util.Prefs
 
 class NavigationActivity : AppCompatActivity() {
 
@@ -26,10 +28,24 @@ class NavigationActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_genre
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.setOnItemSelectedListener {
+            if (it.itemId == R.id.navigation_genre){
+            val s = Prefs(this)
+                if (s.getIsLogin()){
+                    Log.d("TAG", "Logged")
+                } else {
+                    Log.d("TAG", "No Logged")
+                }
+            } else {
+                Log.d("TAG", "onCreate: yang lain" + it.itemId)
+            }
+
+            return@setOnItemSelectedListener true
+        }
     }
 }
